@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+        default-autowire="byName">
+ 
+  
+  <bean id="items" class="com.bacth8.ioc.pets.ItemsService" ></bean>
+  <bean id="items1" class="com.bacth8.ioc.pets.ItemsService"></bean>
+  
+  <bean id="petService" class ="com.bacth8.ioc.pets.PetStoreService">
+    <!--  <constructor-arg name="items" ref="items"/> -->
+  </bean>
+  
+  <bean id="animalService" class="com.bacth8.ioc.pets.AnimalStoreService" lazy-init="true">
+     <constructor-arg name="items" ref="items"></constructor-arg>
+  </bean>
+ 
+  <bean id="dell" class="com.batch8.ioc.xml.LaptopDetails" >
+   <property name="name" value="DellModel"/>
+   <property name="brand" value="DellFamily"/>
+   <property name="cost" value="500.50"/>
+   <property name="count" value="8"/>
+ </bean> 
+ 
+ <bean id="mac" class="com.batch8.ioc.xml.LaptopDetails" >
+    <constructor-arg index="0" value="MacModel" />
+    <constructor-arg index="1" value="MacFamily" />
+    <constructor-arg index="2" value="2000.00" />
+    <constructor-arg index="3" type="int" value="20" />
+ </bean>
+ 
+  <bean id="hp" class="com.batch8.ioc.xml.LaptopDetails" ></bean>
+  
+  <bean id="prop" class="com.batch8.ioc.prop.ProperyLoaderConfiguration">
+    <property name="dbDetails">
+       <util:properties location="classpath:database.properties"/>
+    </property>
+  </bean>
+  
+  
+  
+  
+  <!-- <bean id="store" class="com.batch8.ioc.xml.Store">
+    <constructor-arg ref="pymnt"/>
+    <property name="items" ref="items"/>
+    <constructor-arg ref="items"/>
+  </bean> -->
+
+  
+  <!-- <bean id="pymnt" class="com.batch8.ioc.xml.Payments"></bean>
+  
+  <bean id="items" class="com.batch8.ioc.xml.Items"></bean>  
+   -->
+      
+</beans>  
+
+
+
